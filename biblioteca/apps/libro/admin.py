@@ -6,6 +6,10 @@ from .models import Category, Book
 
 class BookAdmin(admin.ModelAdmin):
     list_filter = ('category', )
+    list_display = (
+        'title',
+        'category',
+    )
 
 
 admin.site.register(Category)

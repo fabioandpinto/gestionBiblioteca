@@ -3,6 +3,7 @@ from django.db import models
 # importing external models
 from apps.autor.models import Author
 # Create your models here.
+from .managers import BookManager
 
 
 class Category(models.Model):
@@ -23,7 +24,7 @@ class Book(models.Model):
     portrait = models.ImageField(upload_to='portraits/', max_length=100)
     visits = models.PositiveIntegerField()
 
+    object = BookManager()
+
     def __str__(self):
         return self.title
-
-

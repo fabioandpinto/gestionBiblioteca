@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AUTORES</title>
+    <title>LIBROS</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
 
-<h1> PAGINA DE AUTORES </h1>
+<h1> PAGINA DE LIBROS </h1>
         <p>
         <form method = "get">
         {% csrf_token %}
@@ -16,9 +16,20 @@
         </form>
         </p>
 
-        {% for autor in author_list%}
-            <li>{{autor.name}} {{autor.last_name}}</li>
-        {% endfor %}
+            <table class="table-primary" style="width:30%" border="3px">
+
+              <tr>
+                <th>Firstname</th>
+                <th>Category</th>
+              </tr>
+              {% for libro in books %}
+                  <tr>
+                      <td> {{libro.title}}</td>
+                      <td> {{libro.category}}</td>
+                  </tr>
+                {% endfor %}
+            </table>
+
 
 </body>
 </html>

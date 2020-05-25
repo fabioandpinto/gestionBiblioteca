@@ -1,7 +1,8 @@
 from django.db import models
 
 
-# Create your models here.
+# managers of the models
+from .managers import AuthorManager
 
 
 class Author(models.Model):
@@ -12,6 +13,8 @@ class Author(models.Model):
     country = models.CharField('pais',
                                max_length=30)
     age = models.PositiveIntegerField('edad', )
+
+    object = AuthorManager()
 
     def __str__(self):
         return self.name + ' ' + self.last_name
