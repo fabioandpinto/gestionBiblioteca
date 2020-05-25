@@ -16,6 +16,9 @@ class Lector(models.Model):
     def __str__(self):
         return self.name + ' ' + self.last_name
 
+    class Meta:
+        verbose_name_plural = "Lectores"
+
 
 class Prestamo(models.Model):
     lector = models.ForeignKey(Lector,
