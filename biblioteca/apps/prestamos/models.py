@@ -3,6 +3,8 @@ from django.db import models
 # Create your models here.
 from apps.libro.models import Book
 
+from .managers import PrestamoManager
+
 
 class Lector(models.Model):
     name = models.CharField('nombre',
@@ -24,12 +26,15 @@ class Prestamo(models.Model):
     lector = models.ForeignKey(Lector,
                                on_delete=models.CASCADE)
     book = models.ForeignKey(Book,
-                             on_delete=models.CASCADE)
+                             on_delete=models.CASCADE,
+                             related_name='libro_prestamo')
     date_require = models.DateField('fecha_prestamo')
     date_return = models.DateField('fecha_devolución')
     returned = models.BooleanField('devuelto',
                                    null=True,
                                    blank=True)
 
+    object = PrestamoManager()
+
     def __str__(self):
-        return self.lector + ' ' + self.book.title
+        return self.lector.name + ' ' + self.lector.last_name + ' - ' + self.book.title
