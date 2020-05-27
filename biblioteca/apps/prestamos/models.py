@@ -29,7 +29,9 @@ class Prestamo(models.Model):
                              on_delete=models.CASCADE,
                              related_name='libro_prestamo')
     date_require = models.DateField('fecha_prestamo')
-    date_return = models.DateField('fecha_devolución')
+    date_return = models.DateField('fecha_devolución',
+                                   blank=True,
+                                   null=True)
     returned = models.BooleanField('devuelto',
                                    null=True,
                                    blank=True)

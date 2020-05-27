@@ -3,6 +3,12 @@ from django.db import models
 # importing external models
 from apps.autor.models import Author
 # Create your models here.
+from django.db.models.signals import post_save
+
+# app de terceros
+from PIL import Image
+
+
 from .managers import BookManager, CategoryManager
 
 
@@ -32,3 +38,13 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+
+def optimize_image(sender, instance, **kwargs):
+    print(" ------- ")
+    if instance.portrait:
+        portrait = Image.open(instance.portrait.path)
+        portrait.save(instance.portrait.path, quality=20, optimize=True)
+
+
+post_save.connect(optimize_image, sender=Book)
